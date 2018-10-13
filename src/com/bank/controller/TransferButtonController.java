@@ -2,6 +2,7 @@ package com.bank.controller;
 
 import com.bank.model.exception.AccountIsTheSameException;
 import com.bank.model.exception.IncorrectBalanceException;
+import com.bank.model.service.LogService;
 import com.bank.model.service.PersonService;
 import com.bank.view.Window;
 
@@ -13,6 +14,7 @@ public class TransferButtonController implements ActionListener{
 
     private Window window;
     private PersonService personService;
+    private LogService logService = LogService.getInstance();
 
     public TransferButtonController(Window window, PersonService personService) {
         this.window = window;
@@ -29,6 +31,7 @@ public class TransferButtonController implements ActionListener{
             window.refresh(personService.getAll());
         } catch (NumberFormatException | IncorrectBalanceException |AccountIsTheSameException ex){
             JOptionPane.showMessageDialog(window.getjFrame(), ex.getMessage());
+            logService.error("Some problem happened", ex);
         }
     }
 

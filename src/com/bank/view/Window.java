@@ -1,12 +1,14 @@
 package com.bank.view;
 
 import com.bank.model.entity.Person;
+import com.bank.model.service.LogService;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class Window {
 
@@ -23,6 +25,8 @@ public class Window {
     private String title;
     private int width;
     private int height;
+
+    private LogService logService = LogService.getInstance();
 
     public Window(String title, int width, int height) {
         this.title = title;
@@ -43,6 +47,7 @@ public class Window {
         addComponents();
         customizeComponents();
         jFrame.setVisible(true);
+        logService.info("Window has been initialized");
     }
 
     private void addComponents() {
