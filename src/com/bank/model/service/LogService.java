@@ -1,6 +1,7 @@
 package com.bank.model.service;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class LogService {
     
@@ -22,6 +23,8 @@ public class LogService {
     }
 
     private void log(String modePrefix, String message){
-        System.out.println(LocalDateTime.now() + " " + modePrefix + " " + message);
+        System.out.println(LocalDateTime.now().format(DateTimeFormatter.
+                ofPattern("yyyy-MM-dd HH:mm:ss")) + " " +
+                modePrefix + " " + message);
     }
 }
