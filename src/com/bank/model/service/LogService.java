@@ -1,11 +1,15 @@
 package com.bank.model.service;
 
+import com.bank.model.service.validator.FileService;
+
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class LogService {
-    
+
     private static LogService logService;
+    private FileService fileService = FileService.getInstance();
 
     private LogService() {
     }
@@ -26,8 +30,15 @@ public class LogService {
     }
 
     private void log(String modePrefix, String message){
-        System.out.println(LocalDateTime.now().format(DateTimeFormatter.
+        String fullMessage = LocalDateTime.now().format(DateTimeFormatter.
                 ofPattern("yyyy-MM-dd HH:mm:ss")) + " " +
-                modePrefix + " " + message);
+                modePrefix + " " + message;
+        System.out.println(fullMessage);
+
+        try {
+            fileService.write(fullMessage, "/log.txt");
+        } catch (IOException e) {
+            System.out.println(e.getClass().getSimpleName());
+        }
     }
 }
