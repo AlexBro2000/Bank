@@ -7,6 +7,9 @@ public class LogService {
     
     private static LogService logService;
 
+    private LogService() {
+    }
+
     public static LogService getInstance(){
         if(logService == null){
             logService = new LogService();
