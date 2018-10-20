@@ -8,7 +8,6 @@ import java.awt.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 public class Window {
 
@@ -16,8 +15,10 @@ public class Window {
     private JPanel panel;
     private JComboBox accountFromSelector;
     private JComboBox accountToSelector;
+    private JComboBox accountSelector;
     private JTextField moneyField;
     private JButton operationButton;
+    private JButton withdrawalButton;
 
     private JLabel accountsLabel;
     private Map<Integer, JLabel> accounts;
@@ -56,14 +57,18 @@ public class Window {
         panel.add(accountToSelector);
         panel.add(moneyField);
         panel.add(operationButton);
+        panel.add(accountSelector);
+        panel.add(withdrawalButton);
         panel.add(accountsLabel);
         addAccountsToPanel();
     }
 
     private void customizeComponents() {
-        panel.setLayout(new GridLayout(5, 1));
+        panel.setLayout(new GridLayout(10, 6));
         operationButton.setText("Transfer");
+        withdrawalButton.setText("Withdrawal cash");
         accountsLabel.setText("Accounts:");
+
     }
 
     private void addAccountsToPanel(){
@@ -91,6 +96,14 @@ public class Window {
         }
     }
 
+    public JButton getWithdrawalButton() {
+        return withdrawalButton;
+    }
+
+    public void setWithdrawalButton(JButton withdrawalButton) {
+        this.withdrawalButton = withdrawalButton;
+    }
+
     public JButton getOperationButton() {
         return operationButton;
     }
@@ -105,6 +118,14 @@ public class Window {
 
     public void setMoneyField(JTextField moneyField) {
         this.moneyField = moneyField;
+    }
+
+    public JComboBox getAccountSelector() {
+        return accountSelector;
+    }
+
+    public void setAccountSelector(JComboBox accountSelector) {
+        this.accountSelector = accountSelector;
     }
 
     public JComboBox getAccountToSelector() {
