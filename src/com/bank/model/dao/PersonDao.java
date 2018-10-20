@@ -25,6 +25,10 @@ public class PersonDao {
         personFrom.setMoney(personFrom.getMoney() - sum);
         personTo.setMoney(personTo.getMoney() + sum);
     }
+    public void withdrawal(int account, int sum){
+        Person personAccount = getById(account);
+        personAccount.setMoney(personAccount.getMoney() - sum);
+    }
 
     public List<Person> getAll(){
         return new ArrayList<>(personMap.values());

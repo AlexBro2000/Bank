@@ -19,6 +19,13 @@ public class PersonService {
         this.personValidator = personValidator;
     }
 
+    public void withdrawal(int account, int sum){
+        if(!personValidator.balanceIsPositive(personDao.getById(account),sum)){
+            throw new IncorrectBalanceException();
+        }
+        personDao.withdrawal(account, sum);
+        logService.info("Withdrawal from ID: " + account + " Sum: " + sum);
+    }
     public void transfer(int from, int to, int sum) {
         if (!personValidator.balanceIsPositive(personDao.getById(from), sum)) {
             throw new IncorrectBalanceException();
